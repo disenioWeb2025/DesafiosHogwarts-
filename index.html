@@ -1,121 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa del Merodeador</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-
-        .intro {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 20px;
-            background-color: #fdf4e6;
-            padding: 20px;
-            border: 2px solid #6b3f29;
-            border-radius: 10px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .intro-text {
-            flex: 1;
-            color: #4d2e1e;
-            font-family: 'Georgia', serif;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .intro-text h2 {
-            color: #6b3f29;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-
-        .intro-image img {
-            width: 200px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .controls {
-            width: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background-color: #6b3f29;
-            padding: 15px;
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .controls p {
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        button {
-            background-color: #4d2e1e;
-            color: #fff;
-            border: 1px solid #000;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #3e2418;
-        }
-
-        button:active {
-            background-color: #29170e;
-        }
-
-        .map {
-            width: 400px;
-            height: 400px;
-            background: url('mapa.png') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            border: 5px solid #333;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .player {
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid black;
-            position: absolute;
-            top: 380px;
-            left: 200px;
-            transform-origin: center;
-            transform: rotate(0deg);
-        }
-    </style>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Mapa del Merodeador</h1>
@@ -137,14 +27,13 @@
             </p>
         </div>
         <div class="intro-image">
-            <img src="mapaIntro.png" alt="Hogwarts Castle" />
+            <img src="mapaIntro.png" alt="Hogwarts Castle">
         </div>
     </div>
 
     <div class="container">
         <div class="controls">
             <div class="direction-buttons">
-                <p>punto()</p>
                 <button onclick="rotate('Norte')">Norte ▲</button>
                 <div>
                     <button onclick="rotate('Oeste')">Oeste ◀</button>
@@ -153,7 +42,6 @@
                 <button onclick="rotate('Sur')">Sur ▼</button>
             </div>
             <div class="advance-buttons">
-                <p>adelante()</p>
                 <button onclick="advance(1)">Adelante(1)</button>
                 <button onclick="advance(2)">Adelante(2)</button>
                 <button onclick="advance(3)">Adelante(3)</button>
@@ -161,7 +49,6 @@
                 <button onclick="advance(5)">Adelante(5)</button>
             </div>
             <div class="action-buttons">
-                <p>cavar() / restablecer()</p>
                 <button onclick="excavar()">excavar()</button>
                 <button onclick="reset()">reiniciar()</button>
             </div>
@@ -171,71 +58,7 @@
         </div>
     </div>
 
-    <script>
-        const player = document.getElementById('player');
-        let position = { top: 380, left: 200 };
-        let direction = 0;
-
-        function rotate(dir) {
-            switch (dir) {
-                case 'Norte': direction = 0; break;
-                case 'Sur': direction = 180; break;
-                case 'Este': direction = 90; break;
-                case 'Oeste': direction = 270; break;
-            }
-            player.style.transform = `rotate(${direction}deg)`;
-        }
-
-        function advance(steps) {
-            const stepSize = 25; // Tamaño de un paso
-            for (let i = 0; i < steps; i++) {
-                const currentTop = position.top;
-                const currentLeft = position.left;
-
-                // Calcula la nueva posición para un solo paso
-                switch (direction) {
-                    case 0: position.top = Math.max(0, position.top - stepSize); break;
-                    case 180: position.top = Math.min(375, position.top + stepSize); break;
-                    case 90: position.left = Math.min(375, position.left + stepSize); break;
-                    case 270: position.left = Math.max(0, position.left - stepSize); break;
-                }
-
-                leaveFootprint(currentTop, currentLeft, direction);
-
-                // Actualiza la posición del jugador
-                player.style.top = position.top + 'px';
-                player.style.left = position.left + 'px';
-            }
-        }
-
-        function leaveFootprint(top, left, rotation) {
-            const footprint = document.createElement('img');
-            footprint.src = 'huella.png'; // Imagen de la huella
-            footprint.alt = 'Huella';
-            footprint.style.position = 'absolute';
-            footprint.style.width = '20px';
-            footprint.style.height = '20px';
-            footprint.style.top = top + 'px';
-            footprint.style.left = left + 'px';
-            footprint.style.transform = `rotate(${rotation}deg)`;
-
-            document.querySelector('.map').appendChild(footprint);
-        }
-
-        function excavar() {
-            alert('¡Excavando en la posición actual!');
-        }
-
-        function reset() {
-            position = { top: 380, left: 200 };
-            direction = 0;
-            player.style.top = position.top + 'px';
-            player.style.left = position.left + 'px';
-            player.style.transform = `rotate(${direction}deg)`;
-
-            // Elimina todas las huellas
-            document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
-        }
-    </script>
+    <!-- Enlace al archivo JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
