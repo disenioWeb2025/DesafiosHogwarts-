@@ -188,16 +188,49 @@
         function advance(steps) {
             const stepSize = 25 * steps;
 
+            // Guarda la posición actual antes de mover
+            const currentTop = position.top;
+            const currentLeft = position.left;
+
+            // Calcula la nueva posición
             switch (direction) {
-                case 0: position.top = Math.max(0, position.top - stepSize); break;
-                case 180: position.top = Math.min(375, position.top + stepSize); break;
-                case 90: position.left = Math.min(375, position.left + stepSize); break;
-                case 270: position.left = Math.max(0, position.left - stepSize); break;
+                case 0: // Norte
+                    position.top = Math.max(0, position.top - stepSize);
+                    break;
+                case 180: // Sur
+                    position.top = Math.min(375, position.top + stepSize);
+                    break;
+                case 90: // Este
+                    position.left = Math.min(375, position.left + stepSize);
+                    break;
+                case 270: // Oeste
+                    position.left = Math.max(0, position.left - stepSize);
+                    break;
             }
 
+            // Deja una huella en la posición anterior
+            leaveFootprint(currentTop, currentLeft);
+
+            // Actualiza la posición del jugador
             player.style.top = position.top + 'px';
             player.style.left = position.left + 'px';
         }
+
+        // Función para dejar una huella
+        function leaveFootprint(top, left) {
+            const footprint = document.createElement('img');
+            footprint.src = 'huella.png'; // Imagen de la huella
+            footprint.alt = 'Huella';
+            footprint.style.position = 'absolute';
+            footprint.style.width = '20px';
+            footprint.style.height = '20px';
+            footprint.style.top = top + 'px';
+            footprint.style.left = left + 'px';
+
+            // Añadir la huella al mapa
+            document.querySelector('.map').appendChild(footprint);
+        }
+
 
         function excavar() {
             alert('¡Excavando en la posición actual!');
@@ -209,7 +242,11 @@
             player.style.top = position.top + 'px';
             player.style.left = position.left + 'px';
             player.style.transform = `rotate(${direction}deg)`;
+
+            // Elimina todas las huellas
+            document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
         }
+
     </script>
 </body>
 </html>
