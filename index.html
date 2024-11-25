@@ -136,7 +136,7 @@
             </p>
         </div>
         <div class="intro-image">
-            <img src="mapaIntro.png" alt="Hogwarts Castle" />
+            <img src="hogwarts.png" alt="Hogwarts Castle" />
         </div>
     </div>
 
@@ -186,38 +186,28 @@
         }
 
         function advance(steps) {
-            const stepSize = 25 * steps;
+            const stepSize = 25; // Tamaño de un paso
+            for (let i = 0; i < steps; i++) {
+                const currentTop = position.top;
+                const currentLeft = position.left;
 
-            // Guarda la posición actual antes de mover
-            const currentTop = position.top;
-            const currentLeft = position.left;
+                // Calcula la nueva posición para un solo paso
+                switch (direction) {
+                    case 0: position.top = Math.max(0, position.top - stepSize); break;
+                    case 180: position.top = Math.min(375, position.top + stepSize); break;
+                    case 90: position.left = Math.min(375, position.left + stepSize); break;
+                    case 270: position.left = Math.max(0, position.left - stepSize); break;
+                }
 
-            // Calcula la nueva posición
-            switch (direction) {
-                case 0: // Norte
-                    position.top = Math.max(0, position.top - stepSize);
-                    break;
-                case 180: // Sur
-                    position.top = Math.min(375, position.top + stepSize);
-                    break;
-                case 90: // Este
-                    position.left = Math.min(375, position.left + stepSize);
-                    break;
-                case 270: // Oeste
-                    position.left = Math.max(0, position.left - stepSize);
-                    break;
+                leaveFootprint(currentTop, currentLeft, direction);
+
+                // Actualiza la posición del jugador
+                player.style.top = position.top + 'px';
+                player.style.left = position.left + 'px';
             }
-
-            // Deja una huella en la posición anterior
-            leaveFootprint(currentTop, currentLeft);
-
-            // Actualiza la posición del jugador
-            player.style.top = position.top + 'px';
-            player.style.left = position.left + 'px';
         }
 
-        // Función para dejar una huella
-        function leaveFootprint(top, left) {
+        function leaveFootprint(top, left, rotation) {
             const footprint = document.createElement('img');
             footprint.src = 'huella.png'; // Imagen de la huella
             footprint.alt = 'Huella';
@@ -226,11 +216,10 @@
             footprint.style.height = '20px';
             footprint.style.top = top + 'px';
             footprint.style.left = left + 'px';
+            footprint.style.transform = `rotate(${rotation}deg)`;
 
-            // Añadir la huella al mapa
             document.querySelector('.map').appendChild(footprint);
         }
-
 
         function excavar() {
             alert('¡Excavando en la posición actual!');
@@ -246,7 +235,6 @@
             // Elimina todas las huellas
             document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
         }
-
     </script>
 </body>
 </html>
