@@ -68,7 +68,7 @@ h1 {
     font-size: 14px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     margin-top: 70px; /* Ajusta para comenzar a la misma altura que el mapa */
-    margin-left: -20px; /* Mueve el marco marrón hacia la derecha */
+    margin-left: 80px; /* Mueve el marco marrón hacia la derecha */
 }
 
 
