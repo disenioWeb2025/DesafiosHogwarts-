@@ -99,7 +99,7 @@ button:active {
     flex-direction: column;
     align-items: flex-start; /* Alinea las pestañas a la izquierda */
     margin-top: 20px;
-    margin-left: 20px; /* Corrección hacia la izquierda */
+    margin-left: 40px; /* Corrección hacia la izquierda */
 }
 
 .tabs {
