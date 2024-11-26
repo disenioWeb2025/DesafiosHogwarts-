@@ -56,18 +56,21 @@ h1 {
 /* Controls */
 .controls {
     width: 200px;
-    height: 400px; /* Igual que el mapa */
+    height: 375px; /* Igual que el mapa */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Coloca todos los elementos desde la parte superior */
+    justify-content: space-between; /* Distribuye uniformemente los botones */
     gap: 10px; /* Espaciado interno uniforme */
     background-color: #6b3f29;
-    padding: 10px; /* Espaciado interno */
+    padding: 15px; /* Espaciado interno */
     border-radius: 10px;
     color: white;
     font-size: 14px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 70px; /* Ajusta para comenzar a la misma altura que el mapa */
+    margin-left: 20px; /* Mueve el marco marrón hacia la derecha */
 }
+
 
 /* Botones */
 button {
