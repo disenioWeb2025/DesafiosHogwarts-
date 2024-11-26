@@ -46,13 +46,36 @@ function leaveFootprint(top, left, rotation) {
     document.querySelector('.map').appendChild(footprint);
 }
 
+
+
 function switchTab(tabId) {
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => {
-        content.style.display = 'none';
+    // Oculta el contenido de todas las pestañas
+    const allContents = document.querySelectorAll('.tab-content');
+    allContents.forEach(content => {
+        content.style.display = 'none'; // Oculta todas
     });
-    document.getElementById(`${tabId}-content`).style.display = 'block';
+
+    // Resalta la pestaña activa
+    const allTabs = document.querySelectorAll('.tab');
+    allTabs.forEach(tab => {
+        tab.classList.remove('active'); // Elimina la clase 'active' de todas
+    });
+
+    // Muestra el contenido de la pestaña seleccionada
+    const activeContent = document.getElementById(`${tabId}-content`);
+    if (activeContent) {
+        activeContent.style.display = 'block'; // Muestra el contenido correspondiente
+    }
+
+    // Marca la pestaña activa
+    const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    }
 }
+
+
+
 
 function excavar() {
     alert('¡Excavando en la posición actual!');
@@ -67,3 +90,4 @@ function reset() {
 
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
 }
+
