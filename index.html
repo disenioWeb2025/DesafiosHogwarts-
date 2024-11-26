@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa del Merodeador</title>
-    <!-- Enlace al archivo CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Mapa del Merodeador</h1>
 
+    <!-- Sección Introductoria -->
     <div class="intro">
         <div class="intro-text">
             <h2>¡Bienvenido a Hogwarts!</h2>
@@ -17,13 +17,11 @@
                 En este conjunto de desafíos, ayudarás al famoso mago Harry Potter a recuperar todas sus posesiones mágicas.
             </p>
             <p>
-                Al parecer, un mago malvado lanzó un hechizo sobre las pertenencias de Harry Potter. Como consecuencia, doce de los objetos mágicos favoritos de Harry han sido enterrados en los terrenos de la escuela, dentro o alrededor del castillo de Hogwarts.
+                Harry encontró una nota en su cama que contiene 12 mensajes codificados que parecen algún tipo de algoritmos mágicos.
+                Él cree que podría usar el Mapa del Merodeador para ayudarlo a localizar sus 12 objetos mágicos.
             </p>
             <p>
-                Harry encontró una nota en su cama que contiene 12 mensajes codificados que parecen algún tipo de algoritmos mágicos. Él cree que podría usar el Mapa del Merodeador del profesor Dumbledore para ayudarlo a localizar sus 12 objetos mágicos.
-            </p>
-            <p>
-                Sin embargo, Harry necesita tu ayuda para descifrar estos algoritmos. ¿Serás capaz de usar el Mapa del Merodeador y descifrar los 12 algoritmos para encontrar todos los artefactos mágicos de Harry Potter?
+                ¿Podrás usar tus habilidades mágicas y computacionales para descifrar estos algoritmos y encontrar los artefactos escondidos en los terrenos de Hogwarts?
             </p>
         </div>
         <div class="intro-image">
@@ -31,7 +29,9 @@
         </div>
     </div>
 
+    <!-- Controles y Contenido Principal -->
     <div class="container">
+        <!-- Controles -->
         <div class="controls">
             <div class="direction-buttons">
                 <button onclick="rotate('Norte')">Norte ▲</button>
@@ -53,12 +53,57 @@
                 <button onclick="reset()">reiniciar()</button>
             </div>
         </div>
-        <div class="map">
-            <div class="player" id="player"></div>
+
+        <!-- Pestañas y Contenido -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab" onclick="switchTab('tab1')">Pestaña 1</button>
+                <button class="tab" onclick="switchTab('tab2')">Pestaña 2</button>
+                <button class="tab" onclick="switchTab('tab3')">Pestaña 3</button>
+            </div>
+            <div class="map-and-content">
+                <!-- Mapa -->
+                <div class="map-image">
+                    <div class="map">
+                        <div class="player" id="player"></div>
+                    </div>
+                </div>
+                <!-- Contenido de las Pestañas -->
+                <div class="tab-content" id="tab1-content" style="display: block;">
+                    <h3>Cómo usar el mapa</h3>
+                    <p>
+                        Usa los botones direccionales para mover al personaje. Haz clic en "Adelante" para avanzar en la dirección actual y excava para buscar objetos ocultos.
+                    </p>
+                </div>
+                <div class="tab-content" id="tab2-content" style="display: none;">
+                    <h3>Objetos mágicos</h3>
+                    <ul>
+                        <li>Varita de Saúco</li>
+                        <li>Mapa del Merodeador</li>
+                        <li>Gafas de Harry</li>
+                        <li>Snitch Dorada</li>
+                        <li>Caldero</li>
+                        <li>Libro de Pociones</li>
+                        <li>Lechuza</li>
+                        <li>Capa de Invisibilidad</li>
+                        <li>Espada de Gryffindor</li>
+                        <li>Recordadora</li>
+                        <li>Collar de Time Turner</li>
+                        <li>Horcrux</li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="tab3-content" style="display: none;">
+                    <h3>Instrucciones</h3>
+                    <p>
+                        - Usa el botón "excavar()" para buscar en tu posición actual.<br>
+                        - Usa "reiniciar()" si deseas comenzar desde el inicio.<br>
+                        - El objetivo es encontrar todos los objetos mágicos ocultos.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Enlace al archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
