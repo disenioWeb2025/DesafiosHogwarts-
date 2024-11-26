@@ -143,12 +143,12 @@ button:active {
     margin: 0; /* Elimina márgenes conflictivos */
 }
 
-.map-and-content {
+/*.map-and-content {
     display: flex;
     justify-content: space-between;
-    gap: 30px; /* Espaciado uniforme */
+    gap: 30px; 
     align-items: flex-start;
-}
+}*/
 
 .map-image {
     width: 400px;
@@ -181,9 +181,9 @@ button:active {
 }
 
 /* Tab Content */
-.tab-content {
-    width: 400px; /* Igual que el mapa */
-    height: 375px; /* --------------Igual que el mapa */
+/*.tab-content {
+    width: 400px; 
+    height: 375px; 
     background-color: #fdf4e6;
     border: 2px solid #6b3f29;
     border-radius: 10px;
@@ -192,10 +192,41 @@ button:active {
     text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Comienza desde arriba */
-    font-family: 'Georgia', serif; /* Igual que .intro-text */
-    font-size: 16px; /* Opcional, ajusta para igualar */
-    line-height: 1.6; /* Opcional, ajusta para igualar */
+    justify-content: flex-start; 
+    font-family: 'Georgia', serif; 
+    font-size: 16px;
+}*/
+
+.map-and-content {
+    display: flex; /* Garantiza disposición horizontal */
+    justify-content: space-between; /* Espaciado entre mapa y contenido */
+    align-items: flex-start; /* Alineación superior */
+    gap: 20px; /* Espaciado entre los elementos */
+    flex-wrap: nowrap; /* Impide que los elementos se envuelvan */
+}
+
+.map-image {
+    flex: 0 0 400px; /* El mapa mantiene un ancho fijo */
+    height: 400px; /* Altura fija para el mapa */
+    background-color: #ddd;
+}
+
+.tab-content {
+    flex: 1; /* Permite que el contenido de la pestaña ocupe el resto del espacio */
+    max-width: 400px; /* Máximo igual al mapa para consistencia visual */
+    height: auto; /* Ajusta la altura automáticamente */
+    background-color: #fdf4e6;
+    border: 2px solid #6b3f29;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    overflow-y: auto; /* Scroll si el contenido es demasiado largo */
+    display: none; /* Oculta el contenido por defecto */
+}
+
+.tab-content.active {
+    display: block; /* Muestra solo la pestaña activa */
 }
 
 
