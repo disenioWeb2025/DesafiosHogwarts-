@@ -46,32 +46,31 @@ h1 {
 /* Main Container */
 .container {
     display: flex;
-    justify-content: flex-start;
-    gap: 20px;
+    justify-content: space-between; /* Distribución uniforme */
+    gap: 30px; /* Distancia uniforme entre elementos */
     margin-top: 20px;
-    align-items: flex-start; /* Alinea la parte superior */
-    margin-left: 20px; /* Ajuste a la izquierda */
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%; /* Centrado y consistente */
 }
 
 /* Controls */
 .controls {
     width: 200px;
-    height: 375px; /* Igual que el mapa */
+    height: 375px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribuye uniformemente los botones */
-    gap: 10px; /* Espaciado interno uniforme */
+    justify-content: space-between;
+    gap: 10px;
     background-color: #6b3f29;
-    padding: 15px; /* Espaciado interno */
+    padding: 15px;
     border-radius: 10px;
     color: white;
     font-size: 14px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin-top: 70px; /* Ajusta para comenzar a la misma altura que el mapa */
-    margin-left: 50px; /* Mueve el marco marrón hacia la derecha */
+    margin-top: 55px; /* Ajusta para comenzar a la misma altura que el mapa */
+   /* margin: 0;  Elimina márgenes individuales */
 }
-
-
 /* Botones */
 button {
     background-color: #4d2e1e;
@@ -91,22 +90,20 @@ button:hover {
 button:active {
     background-color: #29170e;
 }
-
 /* Tabs and Map */
 .tabs-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinea las pestañas a la izquierda */
-    margin-top: 20px;
-    margin-left: 20px; /* Corrección hacia la izquierda */
+    align-items: flex-start;
+    margin: 0; /* Asegura alineación con otros elementos */
 }
 
 .tabs {
     display: flex;
-    justify-content: flex-start; /* Alinea las pestañas a la izquierda */
-    gap: 10px; /* Espaciado entre pestañas */
-    margin-bottom: 10px; /* Espacio entre las pestañas y el contenido */
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .tab {
@@ -126,17 +123,34 @@ button:active {
     background-color: #29170e;
 }
 
+
+.tab-content {
+    width: 400px;
+    height: 375px;
+    background-color: #fdf4e6;
+    border: 2px solid #6b3f29;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0; /* Elimina márgenes conflictivos */
+}
+
 .map-and-content {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    align-items: flex-start; /* Asegura alineación superior */
+    gap: 30px; /* Espaciado uniforme */
+    align-items: flex-start;
 }
 
 .map-image {
-    width: 400px; /* Fija un ancho consistente */
-    height: 400px; /* Fija la altura */
+    width: 400px;
+    height: 400px;
     background-color: #ddd;
+    margin: 0; /* Espaciado controlado */
 }
 
 .map {
@@ -175,4 +189,8 @@ button:active {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Comienza desde arriba */
+    font-family: 'Georgia', serif; /* Igual que .intro-text */
+    font-size: 16px; /* Opcional, ajusta para igualar */
+    line-height: 1.6; /* Opcional, ajusta para igualar */
 }
+
