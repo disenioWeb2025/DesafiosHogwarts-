@@ -1,9 +1,18 @@
+   /* General */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
+h1 {
+    margin-top: 20px;
+    color: #4d2e1e;
+}
+
+/* Intro Section */
 .intro {
     display: flex;
     align-items: flex-start;
@@ -27,12 +36,6 @@ body {
     line-height: 1.6;
 }
 
-.intro-text h2 {
-    color: #6b3f29;
-    margin-bottom: 15px;
-    font-size: 24px;
-}
-
 .intro-image img {
     width: 200px;
     height: auto;
@@ -40,41 +43,42 @@ body {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Main Container */
 .container {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     margin-top: 20px;
+    align-items: flex-start; /* Alinea la parte superior */
+    margin-left: 20px; /* Ajuste a la izquierda */
 }
 
+/* Controls */
 .controls {
     width: 200px;
+    height: 400px; /* Igual que el mapa */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: flex-start; /* Coloca todos los elementos desde la parte superior */
+    gap: 10px; /* Espaciado interno uniforme */
     background-color: #6b3f29;
-    padding: 15px;
+    padding: 10px; /* Espaciado interno */
     border-radius: 10px;
     color: white;
     font-size: 14px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.controls p {
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
+/* Botones */
 button {
     background-color: #4d2e1e;
     color: #fff;
     border: 1px solid #000;
-    padding: 10px 15px;
+    padding: 8px 10px; /* Ajuste de tamaño */
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 12px; /* Tamaño de texto reducido */
     cursor: pointer;
+    margin: 5px 0; /* Espaciado vertical entre botones */
 }
 
 button:hover {
@@ -85,9 +89,56 @@ button:active {
     background-color: #29170e;
 }
 
+/* Tabs and Map */
+.tabs-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea las pestañas a la izquierda */
+    margin-top: 20px;
+    margin-left: 20px; /* Corrección hacia la izquierda */
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start; /* Alinea las pestañas a la izquierda */
+    gap: 10px; /* Espaciado entre pestañas */
+    margin-bottom: 10px; /* Espacio entre las pestañas y el contenido */
+}
+
+.tab {
+    background-color: #6b3f29;
+    color: white;
+    border: 1px solid #333;
+    padding: 8px 12px; /* Tamaño más pequeño */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background-color: #4d2e1e;
+}
+
+.tab:active {
+    background-color: #29170e;
+}
+
+.map-and-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start; /* Asegura alineación superior */
+}
+
+.map-image {
+    width: 400px; /* Fija un ancho consistente */
+    height: 400px; /* Fija la altura */
+    background-color: #ddd;
+}
+
 .map {
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     background: url('mapa.png') no-repeat center center;
     background-size: cover;
     position: relative;
@@ -106,4 +157,19 @@ button:active {
     left: 200px;
     transform-origin: center;
     transform: rotate(0deg);
+}
+
+/* Tab Content */
+.tab-content {
+    width: 400px; /* Igual que el mapa */
+    height: 375px; /* --------------Igual que el mapa */
+    background-color: #fdf4e6;
+    border: 2px solid #6b3f29;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Comienza desde arriba */
 }
