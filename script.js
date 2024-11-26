@@ -46,6 +46,14 @@ function leaveFootprint(top, left, rotation) {
     document.querySelector('.map').appendChild(footprint);
 }
 
+function switchTab(tabId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => {
+        content.style.display = 'none';
+    });
+    document.getElementById(`${tabId}-content`).style.display = 'block';
+}
+
 function excavar() {
     alert('¡Excavando en la posición actual!');
 }
