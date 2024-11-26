@@ -123,6 +123,12 @@ button:active {
     background-color: #29170e;
 }
 
+.tab.active {
+    background-color: #fff;
+    color: #4d2e1e;
+    font-weight: bold;
+}
+
 
 .tab-content {
     width: 400px;
