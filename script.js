@@ -1,8 +1,11 @@
-
 const player = document.getElementById('player');
-let position = { top: 380, left: 200 };
-let direction = 0;
 
+// Definir posición inicial y dirección inicial
+const posicionInicial = { top: 380, left: 200 };
+let position = { ...posicionInicial }; // Copia de la posición inicial
+let direction = 0; // Dirección inicial (0 = Norte)
+
+// Función para rotar el jugador
 function rotate(dir) {
     switch (dir) {
         case 'Norte': direction = 0; break;
@@ -13,29 +16,41 @@ function rotate(dir) {
     player.style.transform = `rotate(${direction}deg)`;
 }
 
+// Función para avanzar en la dirección actual
 function advance(steps) {
-    const stepSize = 25;
-    for (let i = 0; i < steps; i++) {
-        const currentTop = position.top;
-        const currentLeft = position.left;
+    const stepSize = 25; // Tamaño de cada paso en píxeles
 
+    let i = 0;
+
+    function moveStep() {
+        if (i >= steps) return; // Detener el bucle cuando se completen los pasos
+
+        // Crear la huella en la posición actual ANTES de mover al jugador
+        leaveFootprint(position.top, position.left, direction);
+
+        // Calcular nueva posición basada en la dirección
         switch (direction) {
-            case 0: position.top = Math.max(0, position.top - stepSize); break;
-            case 180: position.top = Math.min(375, position.top + stepSize); break;
-            case 90: position.left = Math.min(375, position.left + stepSize); break;
-            case 270: position.left = Math.max(0, position.left - stepSize); break;
+            case 0: position.top = Math.max(0, position.top - stepSize); break; // Norte
+            case 180: position.top = Math.min(375, position.top + stepSize); break; // Sur
+            case 90: position.left = Math.min(375, position.left + stepSize); break; // Este
+            case 270: position.left = Math.max(0, position.left - stepSize); break; // Oeste
         }
 
-        leaveFootprint(currentTop, currentLeft, direction);
-
+        // Actualizar visualmente la posición del jugador
         player.style.top = position.top + 'px';
         player.style.left = position.left + 'px';
+
+        i++; // Incrementar el contador de pasos
+        setTimeout(moveStep, 200); // Llamar al siguiente paso con un retraso de 200ms
     }
+
+    moveStep(); // Iniciar el movimiento
 }
 
+// Función para dejar una huella en la posición actual
 function leaveFootprint(top, left, rotation) {
     const footprint = document.createElement('img');
-    footprint.src = 'imagenes/huella.png';
+    footprint.src = 'imagenes/huella.png'; // Ruta a la imagen de la huella
     footprint.alt = 'Huella';
     footprint.style.position = 'absolute';
     footprint.style.width = '20px';
@@ -47,23 +62,27 @@ function leaveFootprint(top, left, rotation) {
     document.querySelector('.map').appendChild(footprint);
 }
 
-
-
+// Función para excavar en la posición actual
 function excavar() {
-    alert('¡Excavando en la posición actual!');
+    alert(`¡Excavando en la posición actual! Posición: top=${position.top}, left=${position.left}`);
 }
 
+// Función para reiniciar al jugador
 function reset() {
-    position = { top: 380, left: 200 };
+    // Restaurar la posición inicial
+    position = { ...posicionInicial };
     direction = 0;
+
+    // Actualizar la posición y dirección del jugador
     player.style.top = position.top + 'px';
     player.style.left = position.left + 'px';
     player.style.transform = `rotate(${direction}deg)`;
 
+    // Eliminar todas las huellas
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
 }
 
-
+// Función para cambiar de pestaña
 function switchTab(tabId) {
     // Oculta todo el contenido
     const allContents = document.querySelectorAll('.tab-content');
@@ -81,3 +100,6 @@ function switchTab(tabId) {
     const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
     if (activeTab) activeTab.classList.add('active');
 }
+
+// Configurar posición inicial al cargar la página
+window.onload = () => reset();
