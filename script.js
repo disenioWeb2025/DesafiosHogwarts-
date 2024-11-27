@@ -1,3 +1,4 @@
+
 const player = document.getElementById('player');
 let position = { top: 380, left: 200 };
 let direction = 0;
