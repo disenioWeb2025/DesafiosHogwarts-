@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+    </head>
 <body>
+    
 
     <!-- Introducción -->
     <div class="intro">
@@ -25,7 +26,7 @@
             </p>
         </div>
         <div class="intro-image">
-            <img src="mapaIntro.png" alt="Hogwarts Castle">
+            <img src="imagenes/mapaIntro.png" alt="Hogwarts Castle">
         </div>
     </div>
 
@@ -36,7 +37,7 @@
             <!-- Nuevas Pestañas -->
             <div class="tabs tabs-new">
                 <button class="tab" onclick="switchTab('tabA')">A</button>
-                <button class="tab" onclick="switchTab('tabB')">B</button>
+                <button class="tab" onclick="window.location.href='tabla.html'">B</button>
                 <button class="tab" onclick="switchTab('tabC')">C</button>
             </div>
 
@@ -98,7 +99,7 @@
             <!-- Contenidos -->
             <div class="content-frame">
                 <div class="tab-content" id="tabA-content">Contenido pestaña A</div>
-                <div class="tab-content" id="tabB-content">Contenido pestaña B</div>
+                
                 <div class="tab-content" id="tabC-content">Contenido pestaña C</div>
                 <div class="tab-content" id="tab1-content">Contenido pestaña 1</div>
                 <div class="tab-content" id="tab2-content">Contenido pestaña 2</div>
@@ -117,5 +118,3 @@
     </div>
 </body>
 </html>
-
-
