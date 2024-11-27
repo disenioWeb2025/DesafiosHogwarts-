@@ -18,13 +18,13 @@ h1 {
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
-    background-color: #e8dcc2; /* Igual al fondo del marco principal */
+    background-color: #e8dcc2; /* Fondo claro */
     padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
     width: 90%;
-    max-width: 1200px; /* Coincide con el marco principal */
-    margin: 20px auto; /* Centrado */
+    max-width: 1200px;
+    margin: 20px auto;
 }
 
 .intro-text {
@@ -70,23 +70,40 @@ h1 {
     background-color: #6b3f29; /* Marrón oscuro */
     margin: 0;
     position: relative;
-    top: -6px; /* Ajuste para que la línea quede tocando las pestañas nuevas */
+    top: -4px; /* Ajuste para que la línea quede cerca de las pestañas numeradas */
 }
 
-/* Pestañas Nuevas */
-.tabs-new {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    position: relative;
-    top: 5px; /* Eleva las pestañas nuevas ligeramente para que se apoyen sobre la línea */
+/* Estilo común para todas las pestañas */
+.tabs .tab,
+.tabs-new .tab {
+    background: linear-gradient(to bottom, #4d2e1e, #3e2418); /* Base marrón oscuro */
+    color: #fdd835; /* Amarillo dorado */
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border: 1px solid #4d2e1e; /* Borde marrón */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    margin-right: 5px; /* Separación entre pestañas */
+    transition: background 0.3s, color 0.3s; /* Transición suave */
 }
 
-/* Pestañas Numeradas */
-.tabs {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+/* Hover y Active para pestañas */
+.tabs .tab:hover,
+.tabs-new .tab:hover {
+    background: linear-gradient(to bottom, #8b0000, #b22222); /* Rojo oscuro en hover */
+    color: #ffeb3b; /* Amarillo más claro */
+}
+
+/* Pestaña activa con colores invertidos */
+.tabs .tab.active,
+.tabs-new .tab.active {
+    background: #fdd835; /* Amarillo dorado */
+    color: #4d2e1e; /* Marrón oscuro */
+    border-bottom: 2px solid #6b3f29; /* Línea de conexión con el contenido */
 }
 
 /* Contenedor Secundario (Mapa, Controles y Contenido) */
@@ -96,20 +113,20 @@ h1 {
     justify-content: space-between;
     gap: 20px;
     width: 100%;
-    background-color: #e8dcc2; /* Fondo igualado con la introducción */
+    background-color: #f8f4e1; /* Fondo claro */
     padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 /* Controles */
 .controls {
     width: 200px;
-    height: 400px;
+    height: 375px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #6b3f29;
+    background-color: #6b3f29; /* Marrón oscuro */
     padding: 15px;
     border-radius: 10px;
     color: white;
@@ -117,24 +134,27 @@ h1 {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Botones */
-button {
-    background-color: #4d2e1e;
-    color: #fff;
-    border: 1px solid #000;
-    padding: 8px 10px;
+/* Botones de Control */
+.controls button {
+    background: linear-gradient(to bottom, #4d2e1e, #3e2418); /* Base marrón oscuro */
+    color: #fdd835; /* Amarillo dorado */
+    border: 1px solid #4d2e1e; /* Borde oscuro */
     border-radius: 5px;
-    font-size: 12px;
+    font-family: 'Georgia', serif; /* Fuente serif */
+    padding: 10px 15px;
     cursor: pointer;
-    margin: 5px 0;
+    transition: background 0.3s, color 0.3s;
+    text-align: center;
 }
 
-button:hover {
-    background-color: #3e2418;
+.controls button:hover {
+    background: linear-gradient(to bottom, #8b0000, #b22222); /* Rojo oscuro en hover */
+    color: #ffeb3b;
 }
 
-button:active {
-    background-color: #29170e;
+.controls button:active {
+    background: #fdd835; /* Amarillo dorado al hacer clic */
+    color: #4d2e1e; /* Marrón oscuro */
 }
 
 /* Mapa */
@@ -142,7 +162,7 @@ button:active {
     width: 400px;
     height: 400px;
     background-color: #ddd;
-    position: relative; /* Necesario para posicionar el jugador */
+    position: relative;
 }
 
 .map {
@@ -161,7 +181,7 @@ button:active {
     border-right: 10px solid transparent;
     border-bottom: 20px solid black;
     position: absolute;
-    bottom: 10px; /* Alineado al fondo del mapa */
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -172,46 +192,6 @@ button:active {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-/* Estilo de Pestañas */
-.tab {
-    background-color: #6b3f29;
-    color: white;
-    border: 1px solid #333;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.tab:hover {
-    background-color: #4d2e1e;
-}
-
-.tab:active {
-    background-color: #29170e;
-}
-
-/* Cuando está activa, se invierten colores */
-.tab.active {
-    background-color: white;
-    color: #6b3f29;
-    font-weight: bold;
-}
-
-/* Tabs-New Estilo (Con esquinas superiores redondeadas) */
-.tabs-new .tab {
-    background-color: #6b3f29; /* Igual que las pestañas originales */
-    color: #fff;
-    border: 1px solid #333;
-    border-top-left-radius: 10px; /* Bordes superiores redondeados */
-    border-top-right-radius: 10px;
-}
-
-.tabs-new .tab.active {
-    background-color: white;
-    color: #6b3f29;
 }
 
 /* Contenido de las Pestañas */
@@ -227,13 +207,11 @@ button:active {
     text-align: left;
     overflow-y: auto;
     display: none;
-    font-family: 'Georgia', serif; /* Cambiado para que coincida con la introducción */
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
 }
 
 .tab-content.active {
     display: block;
 }
-
 
