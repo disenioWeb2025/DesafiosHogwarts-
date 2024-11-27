@@ -35,7 +35,7 @@ function advance(steps) {
 
 function leaveFootprint(top, left, rotation) {
     const footprint = document.createElement('img');
-    footprint.src = 'huella.png';
+    footprint.src = 'imagenes/huella.png';
     footprint.alt = 'Huella';
     footprint.style.position = 'absolute';
     footprint.style.width = '20px';
