@@ -90,4 +90,3 @@ function reset() {
 
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
 }
-
