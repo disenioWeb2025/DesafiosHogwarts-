@@ -34,28 +34,36 @@
         <!-- Controles -->
         <div class="controls">
             <div class="direction-buttons">
-                <button onclick="rotate('Norte')">Norte ▲</button>
+                <button onclick="rotate('Norte')">North() ▲</button>
                 <div>
-                    <button onclick="rotate('Oeste')">Oeste ◀</button>
-                    <button onclick="rotate('Este')">Este ▶</button>
+                    <button onclick="rotate('Oeste')">Left() ◀</button>
+                    <button onclick="rotate('Este')">Right() ▶</button>
                 </div>
-                <button onclick="rotate('Sur')">Sur ▼</button>
+                <button onclick="rotate('Sur')">South() ▼</button>
             </div>
             <div class="advance-buttons">
-                <button onclick="advance(1)">Adelante(1)</button>
-                <button onclick="advance(2)">Adelante(2)</button>
-                <button onclick="advance(3)">Adelante(3)</button>
-                <button onclick="advance(4)">Adelante(4)</button>
-                <button onclick="advance(5)">Adelante(5)</button>
+                <button onclick="advance(1)">Forward(1)</button>
+                <button onclick="advance(2)">Forward(2)</button>
+                <button onclick="advance(3)">Forward(3)</button>
+                <button onclick="advance(4)">Forward(4)</button>
+                <button onclick="advance(5)">Forward(5)</button>
             </div>
             <div class="action-buttons">
-                <button onclick="excavar()">excavar()</button>
-                <button onclick="reset()">reiniciar()</button>
+                <button onclick="excavar()">Excavar()</button>
+                <button onclick="reset()">Reset()</button>
             </div>
         </div>
-
+        
         <!-- Pestañas y Contenido -->
         <div class="tabs-container">
+            <!-- Nuevas Pestañas -->
+            <div class="tabs tabs-new">
+                <button class="tab" onclick="switchTab('tabA')">A</button>
+                <button class="tab" onclick="switchTab('tabB')">B</button>
+                <button class="tab" onclick="switchTab('tabC')">C</button>
+            </div>
+
+            <!-- Pestañas Originales -->
             <div class="tabs">
                 <button class="tab" onclick="switchTab('tab1')">1</button>
                 <button class="tab" onclick="switchTab('tab2')">2</button>
@@ -79,7 +87,22 @@
                         <div class="player" id="player"></div>
                     </div>
                 </div>
-                <!-- Contenido de las Pestañas -->
+
+                <!-- Contenido de las Nuevas Pestañas -->
+                <div class="tab-content" id="tabA-content" style="display: none;">
+                    <h3>Contenido de la pestaña A</h3>
+                    <p>Aquí va el contenido relacionado con la pestaña A.</p>
+                </div>
+                <div class="tab-content" id="tabB-content" style="display: none;">
+                    <h3>Contenido de la pestaña B</h3>
+                    <p>Aquí va el contenido relacionado con la pestaña B.</p>
+                </div>
+                <div class="tab-content" id="tabC-content" style="display: none;">
+                    <h3>Contenido de la pestaña C</h3>
+                    <p>Aquí va el contenido relacionado con la pestaña C.</p>
+                </div>
+
+                <!-- Contenido de las Pestañas Originales -->
                 <div class="tab-content" id="tab1-content" style="display: block;">
                     <h3>Cómo usar el mapa</h3>
                     <p>
@@ -111,60 +134,7 @@
                         - El objetivo es encontrar todos los objetos mágicos ocultos.
                     </p>
                 </div>
-                <div class="tab-content" id="tab4-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 4.
-                    </p>
-                </div>
-                <div class="tab-content" id="tab5-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 5
-                    </p>
-                </div>
-                <div class="tab-content" id="tab6-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 6
-                    </p>
-                </div>
-                <div class="tab-content" id="tab7-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 7
-                    </p>
-                </div>
-                <div class="tab-content" id="tab8-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 8
-                    </p>
-                </div>
-                <div class="tab-content" id="tab9-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 9
-                    </p>
-                </div>
-                <div class="tab-content" id="tab10-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 10
-                    </p>
-                </div>
-                <div class="tab-content" id="tab11-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 11
-                    </p>
-                </div>
-                <div class="tab-content" id="tab12-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Desafío 12
-                    </p>
-                </div>
+                <!-- Agrega el resto de las pestañas originales aquí -->
             </div> <!-- Fin de map-and-content -->
         </div> <!-- Fin de tabs-container -->
     </div> <!-- Fin de container -->
