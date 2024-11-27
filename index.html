@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa del Merodeador</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Mapa del Merodeador</h1>
 
-    <!-- Sección Introductoria -->
+    <!-- Introducción -->
     <div class="intro">
         <div class="intro-text">
             <h2>¡Bienvenido a Hogwarts!</h2>
@@ -29,32 +30,9 @@
         </div>
     </div>
 
-    <!-- Controles y Contenido Principal -->
+    <!-- Contenedor General -->
     <div class="container">
-        <!-- Controles -->
-        <div class="controls">
-            <div class="direction-buttons">
-                <button onclick="rotate('Norte')">North() ▲</button>
-                <div>
-                    <button onclick="rotate('Oeste')">Left() ◀</button>
-                    <button onclick="rotate('Este')">Right() ▶</button>
-                </div>
-                <button onclick="rotate('Sur')">South() ▼</button>
-            </div>
-            <div class="advance-buttons">
-                <button onclick="advance(1)">Forward(1)</button>
-                <button onclick="advance(2)">Forward(2)</button>
-                <button onclick="advance(3)">Forward(3)</button>
-                <button onclick="advance(4)">Forward(4)</button>
-                <button onclick="advance(5)">Forward(5)</button>
-            </div>
-            <div class="action-buttons">
-                <button onclick="excavar()">Excavar()</button>
-                <button onclick="reset()">Reset()</button>
-            </div>
-        </div>
-        
-        <!-- Pestañas y Contenido -->
+        <!-- Pestañas -->
         <div class="tabs-container">
             <!-- Nuevas Pestañas -->
             <div class="tabs tabs-new">
@@ -63,7 +41,10 @@
                 <button class="tab" onclick="switchTab('tabC')">C</button>
             </div>
 
-            <!-- Pestañas Originales -->
+            <!-- Línea Horizontal -->
+            <div class="separator"></div>
+
+            <!-- Pestañas Numeradas -->
             <div class="tabs">
                 <button class="tab" onclick="switchTab('tab1')">1</button>
                 <button class="tab" onclick="switchTab('tab2')">2</button>
@@ -78,68 +59,63 @@
                 <button class="tab" onclick="switchTab('tab11')">11</button>
                 <button class="tab" onclick="switchTab('tab12')">12</button>
             </div>
+        </div>
 
-            <!-- Mapa y Contenido -->
-            <div class="map-and-content">
-                <!-- Mapa -->
-                <div class="map-image">
-                    <div class="map">
-                        <div class="player" id="player"></div>
+        <!-- Contenedor Principal -->
+        <div class="main-wrapper">
+            <!-- Controles -->
+            <div class="controls">
+                <!-- Botones de Dirección -->
+                <div class="direction-buttons">
+                    <button onclick="rotate('Norte')">North() ▲</button>
+                    <div>
+                        <button onclick="rotate('Oeste')">Left() ◀</button>
+                        <button onclick="rotate('Este')">Right() ▶</button>
                     </div>
+                    <button onclick="rotate('Sur')">South() ▼</button>
                 </div>
+                <!-- Botones de Avance -->
+                <div class="advance-buttons">
+                    <button onclick="advance(1)">Forward(1)</button>
+                    <button onclick="advance(2)">Forward(2)</button>
+                    <button onclick="advance(3)">Forward(3)</button>
+                    <button onclick="advance(4)">Forward(4)</button>
+                    <button onclick="advance(5)">Forward(5)</button>
+                </div>
+                <!-- Botones de Acción -->
+                <div class="action-buttons">
+                    <button onclick="excavar()">Excavar()</button>
+                    <button onclick="reset()">Reset()</button>
+                </div>
+            </div>
 
-                <!-- Contenido de las Nuevas Pestañas -->
-                <div class="tab-content" id="tabA-content" style="display: none;">
-                    <h3>Contenido de la pestaña A</h3>
-                    <p>Aquí va el contenido relacionado con la pestaña A.</p>
+            <!-- Mapa -->
+            <div class="map-image">
+                <div class="map">
+                    <div class="player" id="player"></div>
                 </div>
-                <div class="tab-content" id="tabB-content" style="display: none;">
-                    <h3>Contenido de la pestaña B</h3>
-                    <p>Aquí va el contenido relacionado con la pestaña B.</p>
-                </div>
-                <div class="tab-content" id="tabC-content" style="display: none;">
-                    <h3>Contenido de la pestaña C</h3>
-                    <p>Aquí va el contenido relacionado con la pestaña C.</p>
-                </div>
+            </div>
 
-                <!-- Contenido de las Pestañas Originales -->
-                <div class="tab-content" id="tab1-content" style="display: block;">
-                    <h3>Cómo usar el mapa</h3>
-                    <p>
-                        Usa los botones direccionales para mover al personaje. Haz clic en "Adelante" para avanzar en la dirección actual y excava para buscar objetos ocultos.
-                    </p>
-                </div>
-                <div class="tab-content" id="tab2-content" style="display: none;">
-                    <h3>Objetos mágicos</h3>
-                    <ul>
-                        <li>Varita de Saúco</li>
-                        <li>Mapa del Merodeador</li>
-                        <li>Gafas de Harry</li>
-                        <li>Snitch Dorada</li>
-                        <li>Caldero</li>
-                        <li>Libro de Pociones</li>
-                        <li>Lechuza</li>
-                        <li>Capa de Invisibilidad</li>
-                        <li>Espada de Gryffindor</li>
-                        <li>Recordadora</li>
-                        <li>Collar de Time Turner</li>
-                        <li>Horcrux</li>
-                    </ul>
-                </div>
-                <div class="tab-content" id="tab3-content" style="display: none;">
-                    <h3>Instrucciones</h3>
-                    <p>
-                        - Usa el botón "excavar()" para buscar en tu posición actual.<br>
-                        - Usa "reiniciar()" si deseas comenzar desde el inicio.<br>
-                        - El objetivo es encontrar todos los objetos mágicos ocultos.
-                    </p>
-                </div>
-                <!-- Agrega el resto de las pestañas originales aquí -->
-            </div> <!-- Fin de map-and-content -->
-        </div> <!-- Fin de tabs-container -->
-    </div> <!-- Fin de container -->
-
-    <script src="script.js"></script>
+            <!-- Contenidos -->
+            <div class="content-frame">
+                <div class="tab-content" id="tabA-content">Contenido pestaña A</div>
+                <div class="tab-content" id="tabB-content">Contenido pestaña B</div>
+                <div class="tab-content" id="tabC-content">Contenido pestaña C</div>
+                <div class="tab-content" id="tab1-content">Contenido pestaña 1</div>
+                <div class="tab-content" id="tab2-content">Contenido pestaña 2</div>
+                <div class="tab-content" id="tab3-content">Contenido pestaña 3</div>
+                <div class="tab-content" id="tab4-content">Contenido pestaña 4</div>
+                <div class="tab-content" id="tab5-content">Contenido pestaña 5</div>
+                <div class="tab-content" id="tab6-content">Contenido pestaña 6</div>
+                <div class="tab-content" id="tab7-content">Contenido pestaña 7</div>
+                <div class="tab-content" id="tab8-content">Contenido pestaña 8</div>
+                <div class="tab-content" id="tab9-content">Contenido pestaña 9</div>
+                <div class="tab-content" id="tab10-content">Contenido pestaña 10</div>
+                <div class="tab-content" id="tab11-content">Contenido pestaña 11</div>
+                <div class="tab-content" id="tab12-content">Contenido pestaña 12</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
