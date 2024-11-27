@@ -1,4 +1,4 @@
- /* General */
+/* General */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -12,7 +12,7 @@ h1 {
     color: #4d2e1e;
 }
 
-/* Intro Section */
+/* Sección de Introducción */
 .intro {
     display: flex;
     align-items: flex-start;
@@ -43,44 +43,91 @@ h1 {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Main Container */
+/* Contenedor Principal */
 .container {
     display: flex;
-    justify-content: space-between; /* Distribución uniforme */
-    gap: 30px; /* Distancia uniforme entre elementos */
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%; /* Centrado y consistente */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
 }
 
-/* Controls */
+/* Tabs Container */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Línea horizontal */
+.tabs-container .separator {
+    width: 100%;
+    max-width: 1200px;
+    height: 2px;
+    background-color: #6b3f29; /* Marrón oscuro */
+    margin: 0;
+    position: relative; /* Necesario para superposición */
+    top: -6px; /* Ajuste para que la línea quede tocando las pestañas nuevas */
+}
+
+/* Pestañas Nuevas */
+.tabs-new {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    position: relative; /* Necesario para superposición */
+    top: 5px; /* Eleva las pestañas nuevas ligeramente para que se apoyen sobre la línea */
+}
+
+/* Pestañas Numeradas */
+.tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Contenedor Secundario */
+.main-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    background-color: #e8dcc2; /* Fondo claro diferente al de los contenidos */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados del contenedor */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Controles */
 .controls {
     width: 200px;
     height: 375px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 10px;
     background-color: #6b3f29;
     padding: 15px;
     border-radius: 10px;
     color: white;
     font-size: 14px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin-top: 55px; /* Ajusta para comenzar a la misma altura que el mapa */
-   
 }
+
 /* Botones */
 button {
     background-color: #4d2e1e;
     color: #fff;
     border: 1px solid #000;
-    padding: 8px 10px; /* Ajuste de tamaño */
+    padding: 8px 10px;
     border-radius: 5px;
-    font-size: 12px; /* Tamaño de texto reducido */
+    font-size: 12px;
     cursor: pointer;
-    margin: 5px 0; /* Espaciado vertical entre botones */
+    margin: 5px 0;
 }
 
 button:hover {
@@ -91,25 +138,44 @@ button:active {
     background-color: #29170e;
 }
 
-/* Contenedor de pestañas originales */
-.tabs {
-    display: flex; /* Garantiza disposición horizontal */
-    justify-content: flex-start; /* Alinea las pestañas al inicio */
-    gap: 10px; /* Espaciado entre pestañas */
-    margin-bottom: 10px; /* Espacio con el contenido debajo */
-    flex-wrap: wrap; /* Permite que las pestañas se envuelvan si no caben */
+/* Mapa */
+.map-image {
+    width: 400px;
+    height: 400px;
+    background-color: #ddd;
+    position: relative; /* Necesario para posicionar el jugador */
 }
 
-/* Contenedor de pestañas nuevas */
-.tabs-new {
-    display: flex; /* Garantiza disposición horizontal */
-    justify-content: center; /* Centra las pestañas horizontalmente */
-   /* justify-content: flex-start;*/
+.map {
+    width: 100%;
+    height: 100%;
+    background: url('mapa.png') no-repeat center center;
+    background-size: cover;
+    border: 5px solid #333;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.player {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid black;
+    position: absolute;
+    bottom: 10px; /* Alineado al fondo del mapa */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Marco de Contenidos */
+.content-frame {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    margin-bottom: 15px; /* Espaciado entre las pestañas nuevas y las originales */
 }
 
-/* Estilo base para todas las pestañas */
+/* Estilo de Pestañas */
 .tab {
     background-color: #6b3f29;
     color: white;
@@ -128,142 +194,48 @@ button:active {
     background-color: #29170e;
 }
 
+/* Cuando está activa, se invierten colores */
 .tab.active {
-    background-color: #fff;
-    color: #4d2e1e;
+    background-color: white;
+    color: #6b3f29;
     font-weight: bold;
 }
 
-/* Pestañas nuevas */
-
-
+/* Tabs-New Estilo (Con esquinas superiores redondeadas) */
 .tabs-new .tab {
-    background-color: #4a90e2; /* Color diferente para distinguirlas */
+    background-color: #6b3f29; /* Igual que las pestañas originales */
     color: #fff;
-    border: 1px solid #007aff;
-}
-
-.tabs-new .tab:hover {
-    background-color: #007aff;
-    color: #fff;
-}
-
-.tabs-new .tab:active {
-    background-color: #005bb5;
-}
-/* Tabs and Map */
-.tabs-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 0; /* Asegura alineación con otros elementos */
-}
-
-.tabs {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.tab {
-    background-color: #6b3f29;
-    color: white;
     border: 1px solid #333;
-    padding: 8px 12px; /* Tamaño más pequeño */
-    border-radius: 5px;
-    cursor: pointer;
+    border-top-left-radius: 10px; /* Bordes superiores redondeados */
+    border-top-right-radius: 10px;
 }
 
-.tab:hover {
-    background-color: #4d2e1e;
+.tabs-new .tab.active {
+    background-color: white;
+    color: #6b3f29;
 }
 
-.tab:active {
-    background-color: #29170e;
-}
-
-.tab.active {
-    background-color: #fff;
-    color: #4d2e1e;
-    font-weight: bold;
-}
+/* Contenido de las Pestañas */
 .tab-content {
-    width: 400px;
-    height: 375px;
+    flex: 1;
+    max-width: 400px;
+    height: auto;
     background-color: #fdf4e6;
     border: 2px solid #6b3f29;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     text-align: left;
-    font-family: 'Georgia', serif;
+    overflow-y: auto;
+    display: none;
+    font-family: 'Georgia', serif; /* Cambiado para que coincida con la introducción */
     font-size: 16px;
     line-height: 1.6;
-    margin: 0; /* Elimina márgenes conflictivos */
-}
-
-.map-image {
-    width: 400px;
-    height: 400px;
-    background-color: #ddd;
-    margin: 0; /* Espaciado controlado */
-}
-
-.map {
-    width: 100%;
-    height: 100%;
-    background: url('mapa.png') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    border: 5px solid #333;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-}
-
-.player {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid black;
-    position: absolute;
-    top: 380px;
-    left: 200px;
-    transform-origin: center;
-    transform: rotate(0deg);
-}
-
-.map-and-content {
-    display: flex; /* Garantiza disposición horizontal */
-    justify-content: space-between; /* Espaciado entre mapa y contenido */
-    align-items: flex-start; /* Alineación superior */
-    gap: 20px; /* Espaciado entre los elementos */
-    flex-wrap: nowrap; /* Impide que los elementos se envuelvan */
-}
-
-.map-image {
-    flex: 0 0 400px; /* El mapa mantiene un ancho fijo */
-    height: 400px; /* Altura fija para el mapa */
-    background-color: #ddd;
-}
-
-.tab-content {
-    flex: 1; /* Permite que el contenido de la pestaña ocupe el resto del espacio */
-    max-width: 400px; /* Máximo igual al mapa para consistencia visual */
-    height: auto; /* Ajusta la altura automáticamente */
-    background-color: #fdf4e6;
-    border: 2px solid #6b3f29;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    overflow-y: auto; /* Scroll si el contenido es demasiado largo */
-    display: none; /* Oculta el contenido por defecto */
 }
 
 .tab-content.active {
-    display: block; /* Muestra solo la pestaña activa */
+    display: block;
 }
+
 
 
