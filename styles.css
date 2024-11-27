@@ -16,16 +16,15 @@ h1 {
 .intro {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
-    background-color: #fdf4e6;
+    background-color: #e8dcc2; /* Igual al fondo del marco principal */
     padding: 20px;
-    border: 2px solid #6b3f29;
-    border-radius: 10px;
-    margin: 20px auto;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     width: 90%;
-    max-width: 1050px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1200px; /* Coincide con el marco principal */
+    margin: 20px auto; /* Centrado */
 }
 
 .intro-text {
@@ -70,7 +69,7 @@ h1 {
     height: 2px;
     background-color: #6b3f29; /* Marrón oscuro */
     margin: 0;
-    position: relative; /* Necesario para superposición */
+    position: relative;
     top: -6px; /* Ajuste para que la línea quede tocando las pestañas nuevas */
 }
 
@@ -79,7 +78,7 @@ h1 {
     display: flex;
     gap: 10px;
     justify-content: center;
-    position: relative; /* Necesario para superposición */
+    position: relative;
     top: 5px; /* Eleva las pestañas nuevas ligeramente para que se apoyen sobre la línea */
 }
 
@@ -90,23 +89,23 @@ h1 {
     justify-content: center;
 }
 
-/* Contenedor Secundario */
+/* Contenedor Secundario (Mapa, Controles y Contenido) */
 .main-wrapper {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
     width: 100%;
-    background-color: #e8dcc2; /* Fondo claro diferente al de los contenidos */
+    background-color: #e8dcc2; /* Fondo igualado con la introducción */
     padding: 20px;
-    border-radius: 10px; /* Bordes redondeados del contenedor */
+    border-radius: 10px; /* Bordes redondeados */
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
 /* Controles */
 .controls {
     width: 200px;
-    height: 375px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -236,6 +235,5 @@ button:active {
 .tab-content.active {
     display: block;
 }
-
 
 
