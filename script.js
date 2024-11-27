@@ -48,32 +48,38 @@ function leaveFootprint(top, left, rotation) {
 
 
 
-function switchTab(tabId) {
-    // Oculta el contenido de todas las pestañas
-    const allContents = document.querySelectorAll('.tab-content');
-    allContents.forEach(content => {
-        content.style.display = 'none'; // Oculta todas
-    });
+function excavar() {
+    alert('¡Excavando en la posición actual!');
+}
 
-    // Resalta la pestaña activa
+function reset() {
+    position = { top: 380, left: 200 };
+    direction = 0;
+    player.style.top = position.top + 'px';
+    player.style.left = position.left + 'px';
+    player.style.transform = `rotate(${direction}deg)`;
+
+    document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
+}
+
+
+function switchTab(tabId) {
+    // Oculta todo el contenido
+    const allContents = document.querySelectorAll('.tab-content');
+    allContents.forEach(content => content.style.display = 'none');
+
+    // Elimina la clase "active" de todas las pestañas
     const allTabs = document.querySelectorAll('.tab');
-    allTabs.forEach(tab => {
-        tab.classList.remove('active'); // Elimina la clase 'active' de todas
-    });
+    allTabs.forEach(tab => tab.classList.remove('active'));
 
     // Muestra el contenido de la pestaña seleccionada
     const activeContent = document.getElementById(`${tabId}-content`);
-    if (activeContent) {
-        activeContent.style.display = 'block'; // Muestra el contenido correspondiente
-    }
+    if (activeContent) activeContent.style.display = 'block';
 
-    // Marca la pestaña activa
+    // Añade la clase "active" a la pestaña seleccionada
     const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
-    if (activeTab) {
-        activeTab.classList.add('active');
-    }
+    if (activeTab) activeTab.classList.add('active');
 }
-
 
 
 
