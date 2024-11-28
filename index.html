@@ -3,12 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
     </head>
 <body>
-    
 
     <!-- Introducción -->
     <div class="intro">
@@ -34,17 +32,17 @@
     <div class="container">
         <!-- Pestañas -->
         <div class="tabs-container">
-            <!-- Nuevas Pestañas -->
             <div class="tabs tabs-new">
-                <button class="tab" onclick="switchTab('tabA')">A</button>
-                <button class="tab" onclick="window.location.href='tabla.html'">B</button>
-                <button class="tab" onclick="switchTab('tabC')">C</button>
+                <button class="tab" onclick="switchTab('tabA')">Mapa</button>
+                <button class="tab" onclick="window.location.href='tabla.html'">Baúl Mágico</button>
+                <button class="tab" onclick="switchTab('tabC')">Ayuda</button>
             </div>
+
+            
 
             <!-- Línea Horizontal -->
             <div class="separator"></div>
 
-            <!-- Pestañas Numeradas -->
             <div class="tabs">
                 <button class="tab" onclick="switchTab('tab1')">1</button>
                 <button class="tab" onclick="switchTab('tab2')">2</button>
@@ -54,7 +52,7 @@
                 <button class="tab" onclick="switchTab('tab6')">6</button>
                 <button class="tab" onclick="switchTab('tab7')">7</button>
                 <button class="tab" onclick="switchTab('tab8')">8</button>
-                <button class="tab" onclick="switchTab('tab9')">9</button>
+                <button class="tab" onclick="switchTab('tab9')">8</button>
                 <button class="tab" onclick="switchTab('tab10')">10</button>
                 <button class="tab" onclick="switchTab('tab11')">11</button>
                 <button class="tab" onclick="switchTab('tab12')">12</button>
@@ -63,27 +61,25 @@
 
         <!-- Contenedor Principal -->
         <div class="main-wrapper">
-            <!-- Controles -->
             <div class="controls">
-                <!-- Botones de Dirección -->
                 <div class="direction-buttons">
-                    <button onclick="rotate('Norte')">North() ▲</button>
+                    <button onclick="rotate('Norte')">North ▲</button>
                     <div>
-                        <button onclick="rotate('Oeste')">Left() ◀</button>
-                        <button onclick="rotate('Este')">Right() ▶</button>
+                        <button onclick="rotate('Oeste')">West ◀</button>
+                        <button onclick="rotate('Este')">East ▶</button>
                     </div>
-                    <button onclick="rotate('Sur')">South() ▼</button>
+                    <button onclick="rotate('Sur')">South ▼</button>
                 </div>
-                <!-- Botones de Avance -->
+
                 <div class="advance-buttons">
                     <button onclick="advance(1)">Forward(1)</button>
                     <button onclick="advance(2)">Forward(2)</button>
                     <button onclick="advance(3)">Forward(3)</button>
                     <button onclick="advance(4)">Forward(4)</button>
                     <button onclick="advance(5)">Forward(5)</button>
-                    <button onclick="advance(10)">Forward(10)</button> 
+                    <button onclick="advance(10)">Forward(10)</button>
                 </div>
-                <!-- Botones de Acción -->
+
                 <div class="action-buttons">
                     <button onclick="excavar()">Excavar()</button>
                     <button onclick="reset()">Reset()</button>
@@ -99,10 +95,28 @@
 
             <!-- Contenidos -->
             <div class="content-frame">
-                <div class="tab-content" id="tabA-content">Contenido pestaña A</div>
-                
-                <div class="tab-content" id="tabC-content">Contenido pestaña C</div>
-                <div class="tab-content" id="tab1-content">Contenido pestaña 1</div>
+                <!-- Pestaña 1 -->
+                <div class="tab-content active" id="tab1-content">Código 1
+                    <pre>
+point("north")
+forward(5)
+
+point("east")
+forward(2)
+
+point("north")
+forward(3)
+
+point("west")
+forward(4)
+
+point("south")
+forward(2)
+
+excavar()
+                    </pre>
+                </div>
+
                 <div class="tab-content" id="tab2-content">Contenido pestaña 2</div>
                 <div class="tab-content" id="tab3-content">Contenido pestaña 3</div>
                 <div class="tab-content" id="tab4-content">Contenido pestaña 4</div>
@@ -117,6 +131,13 @@
             </div>
         </div>
     </div>
+
+    <!-- Ventana emergente -->
+    <div id="overlay" class="overlay" onclick="closePopup()">
+        <div class="popup">
+            <img src="imagenes/ventanaTrofeo1.png" alt="Trofeo1">
+        </div>
+    </div>
+
 </body>
 </html>
-

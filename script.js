@@ -62,10 +62,38 @@ function leaveFootprint(top, left, rotation) {
     document.querySelector('.map').appendChild(footprint);
 }
 
-// Función para excavar en la posición actual
 function excavar() {
-    alert(`¡Excavando en la posición actual! Posición: top=${position.top}, left=${position.left}`);
+    // Convertir las coordenadas actuales a números enteros
+    const currentTop = parseInt(position.top);
+    const currentLeft = parseInt(position.left);
+
+    // Verificar si la posición actual coincide con la deseada
+    if (currentTop === 230 && currentLeft === 150) { //  coordenadas de trofeo
+        showPopup();
+    } else {
+        alert('No hay nada aquí para excavar.');
+        alert(`¡Excavando en la posición actual! Posición: top=${currentTop}, left=${currentLeft}`);
+    }
 }
+   
+
+// Función para mostrar la ventana emergente
+function showPopup() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'flex'; // Mostrar el overlay
+}
+
+// Función para cerrar la ventana emergente
+function closePopup() {
+      // Guardar información en el localStorage
+      localStorage.setItem('trofeo1', true);
+
+      // Cerrar la ventana emergente
+      const overlay = document.getElementById('overlay');
+      overlay.style.display = 'none';
+}
+
+
 
 // Función para reiniciar al jugador
 function reset() {
@@ -82,24 +110,34 @@ function reset() {
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
 }
 
-// Función para cambiar de pestaña
 function switchTab(tabId) {
-    // Oculta todo el contenido
+    // Guardar la pestaña activa en localStorage
+    localStorage.setItem('activeTab', tabId);
+
+    // Ocultar todos los contenidos
     const allContents = document.querySelectorAll('.tab-content');
     allContents.forEach(content => content.style.display = 'none');
 
-    // Elimina la clase "active" de todas las pestañas
+    // Eliminar la clase "active" de todas las pestañas
     const allTabs = document.querySelectorAll('.tab');
     allTabs.forEach(tab => tab.classList.remove('active'));
 
-    // Muestra el contenido de la pestaña seleccionada
+    // Mostrar el contenido de la pestaña seleccionada
     const activeContent = document.getElementById(`${tabId}-content`);
     if (activeContent) activeContent.style.display = 'block';
 
-    // Añade la clase "active" a la pestaña seleccionada
+    // Añadir la clase "active" a la pestaña seleccionada
     const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
     if (activeTab) activeTab.classList.add('active');
 }
 
-// Configurar posición inicial al cargar la página
-window.onload = () => reset();
+
+// Configurar pestaña activa al cargar la página
+window.onload = () => {
+    // Leer la pestaña activa desde el localStorage
+    const activeTab = localStorage.getItem('activeTab') || 'tab1'; // Pestaña predeterminada es 'tab1'
+    console.log('Pestaña activa detectada:', activeTab); // Para depuración
+    switchTab(activeTab); // Activar la pestaña correspondiente
+};
+
+
