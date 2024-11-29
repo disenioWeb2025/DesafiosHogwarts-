@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesAyuda.css">
+    <script src="script.js" defer></script>
+    <title>Ayuda</title>
+</head>
+<body>
+    <h1>Ayuda</h1>
+    <div class="tabs-container">
+        <!-- Nuevas Pestañas -->
+        <div class="tabs tabs-new">
+            <button class="tab" onclick="window.location.href='index.html'">Mapa</button>
+            <button class="tab" onclick="window.location.href='tabla.html'">Baúl Mágico</button>
+            <button class="tab active" onclick="window.location.href='ayuda.html'">Ayuda</button>
+        </div>
+    
+        <!-- Línea Horizontal -->
+        <div class="separator"></div>
+
+        <!-- Contenido de Ayuda -->
+        <div class="help-content">
+            <h2>¿Cómo jugar?</h2>
+            <p>¡Bienvenido al juego! Aquí tienes una guía rápida sobre cómo mover al jugador y realizar acciones:</p>
+            <ul>
+                <li><strong>North, East, West, South</strong>: Usa estos botones para girar el jugador hacia una dirección específica.</li>
+                <li><strong>Forward(X)</strong>: Presiona estos botones para mover al jugador hacia adelante. X indica la cantidad de pasos.</li>
+                <li><strong>Excavar()</strong>: Una vez que estés en la posición correcta, presiona este botón para buscar tesoros.</li>
+                <li><strong>Reset()</strong>: Reinicia la posición del jugador al inicio del mapa.</li>
+            </ul>
+            <p>Consejos:</p>
+            <ul>
+                <li>Planifica tus movimientos según el código proporcionado en la pestaña activa.</li>
+                <li>Usa la lógica para encontrar el camino correcto y llegar al destino.</li>
+                <li>¡Explora el mapa y encuentra todos los tesoros escondidos!</li>
+            </ul>
+            <p>¡Buena suerte, mago!</p>
+        </div>
+    </div>
+</body>
+</html>

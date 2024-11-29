@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,8 @@
             <div class="tabs tabs-new">
                 <button class="tab" onclick="switchTab('tabA')">Mapa</button>
                 <button class="tab" onclick="window.location.href='tabla.html'">Baúl Mágico</button>
-                <button class="tab" onclick="switchTab('tabC')">Ayuda</button>
+                <button class="tab" onclick="window.location.href='ayuda.html'">Ayuda</button>
+
             </div>
 
             
@@ -117,27 +119,216 @@ excavar()
                     </pre>
                 </div>
 
-                <div class="tab-content" id="tab2-content">Contenido pestaña 2</div>
-                <div class="tab-content" id="tab3-content">Contenido pestaña 3</div>
-                <div class="tab-content" id="tab4-content">Contenido pestaña 4</div>
-                <div class="tab-content" id="tab5-content">Contenido pestaña 5</div>
-                <div class="tab-content" id="tab6-content">Contenido pestaña 6</div>
-                <div class="tab-content" id="tab7-content">Contenido pestaña 7</div>
-                <div class="tab-content" id="tab8-content">Contenido pestaña 8</div>
-                <div class="tab-content" id="tab9-content">Contenido pestaña 9</div>
-                <div class="tab-content" id="tab10-content">Contenido pestaña 10</div>
-                <div class="tab-content" id="tab11-content">Contenido pestaña 11</div>
-                <div class="tab-content" id="tab12-content">Contenido pestaña 12</div>
+                <div class="tab-content" id="tab2-content">Código 2
+                <pre>
+point("north")
+steps = 5
+forward(steps)
+                   
+point("west")
+steps = steps - 1
+forward(steps)
+                    
+point("south")
+steps = steps - 1
+forward(steps)
+                    
+excavar()
+                </pre>
+
+                </div>
+                <div class="tab-content" id="tab3-content">Código 3
+                <pre>
+point("east")
+steps = 2 * 5
+steps = steps - 7
+forward(steps)
+                    
+point("north")
+steps = (9 * 2) / 3
+steps = steps - 2
+forward(steps)
+                    
+point("west")
+forward(steps)
+                    
+excavar()
+                </pre>
+                </div>
+                <div class="tab-content" id="tab4-content">Código 4
+                <pre>
+a = 5
+b = 3
+c = 1
+                    
+point("north")
+forward(a)
+forward(b)
+forward(c)
+                    
+total = a + b + c
+mean = total / 3
+                    
+point("east")
+forward(mean)
+                    
+excavar()
+               </pre>
+
+                </div>
+                <div class="tab-content" id="tab5-content">Código 5
+                       <pre>
+x = 2
+steps = (x + x) * x
+                       
+IF steps<=10:
+    steps = steps + x
+ELSE:
+     steps = steps - 2 * x
+END IF
+                        
+point("north")
+forward(steps)
+                        
+point("west")
+forward(x)
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab6-content">Código 6
+                    <pre>
+steps = 2^2
+steps = steps * 3
+                        
+IF steps>=0 AND steps<10:
+    direction = "north"
+ELIF steps>=10 AND steps<20:
+    direction = "west"
+ELSE:
+    direction = "east"
+EnD IF
+                        
+point(direction)
+forward(steps/3)
+point("north")
+forwards(steps/4)
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab7-content">Código 7
+                    <pre>
+steps = 0
+
+FOR i FROM 1 to 5:
+    steps = steps + 2
+NEXT i
+                        
+point("north")
+forward(steps)
+                        
+FOR i FROM 1 to 5:
+    steps = steps - 1
+NEXT i
+                        
+point("west")
+forward(steps)
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab8-content">Código 8
+                    <pre>
+point("west")
+forward(5)
+
+FOR x FROM 1 TO 5:
+   point("north")
+   forward(2)
+   point("east")
+   forward(2)
+NEXT i
+
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab9-content">Código 9
+                    <pre>
+steps = 240
+WHILE steps>20:
+  steps = steps / 2
+END WHILE
+
+point("north")
+forward(steps/3)
+
+point("east")
+forward(steps/5)
+
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab10-content">Código 10
+                    <pre>
+x = 1
+steps = 0
+point("north")
+
+WHILE x<=5:
+  IF x==5:
+     point("east") 
+  END IF
+  forward(x)
+  x = x + 1
+END WHILE
+
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab11-content">Código 11
+                    <pre>
+point("north")
+
+total = 0
+FOR x FROM 1 TO 4:
+    forward(x)
+    total = total + x
+NEXT x
+                        
+point("south")
+forward(total)
+excavar()
+                    </pre>
+    
+                </div>
+                <div class="tab-content" id="tab12-content">Código 12
+                    <pre>
+FOR i FROM 1 TO 4:
+    point("east")
+    FOR j FROM 1 TO 2:
+       forward(1)
+    NEXT j
+    point("north")
+    forward(3)
+NEXT i 
+
+excavar()
+                    </pre>
+    
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Ventana emergente -->
+    
     <div id="overlay" class="overlay" onclick="closePopup()">
-        <div class="popup">
-            <img src="imagenes/ventanaTrofeo1.png" alt="Trofeo1">
-        </div>
+        <div class="popup"></div>
     </div>
-
+    
 </body>
 </html>

@@ -1,0 +1,95 @@
+h1 {
+    margin-top: 20px;
+    color: #4d2e1e;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+/* Tabs Container */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tabs-container .separator {
+    width: 100%;
+    max-width: 1200px;
+    height: 2px;
+    background-color: #6b3f29; /* Marrón oscuro */
+    margin: 0;
+    position: relative;
+    top: -4px; /* Ajuste para que la línea quede cerca de las pestañas numeradas */
+}
+
+/* Estilo para pestañas */
+.tabs .tab,
+.tabs-new .tab {
+    background: linear-gradient(to bottom, #4d2e1e, #3e2418); /* Base marrón oscuro */
+    color: #fdd835; /* Amarillo dorado */
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border: 1px solid #4d2e1e; /* Borde marrón */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    margin-right: 5px; /* Separación entre pestañas */
+    transition: background 0.3s, color 0.3s; /* Transición suave */
+}
+
+.tabs .tab:hover,
+.tabs-new .tab:hover {
+    background: #f8f4e1; 
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    color: #4d2e1e; /* Marrón oscuro: define el color del texto */
+}
+
+.tabs .tab.active,
+.tabs-new .tab.active {
+    background: #fdd835; /* Amarillo dorado */
+    color: #4d2e1e; /* Marrón oscuro */
+    border-bottom: 2px solid #6b3f29; /* Línea de conexión con el contenido */
+}
+
+/* Contenedor de ayuda */
+.help-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    background: #f8f4e1; /* Fondo claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    color: #4d2e1e; /* Marrón oscuro */
+    font-family: 'Georgia', serif;
+}
+
+.help-content h2 {
+    color: #4d2e1e;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.help-content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.help-content ul {
+    margin-left: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.help-content ul li {
+    margin-bottom: 10px;
+}

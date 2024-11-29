@@ -5,6 +5,22 @@ const posicionInicial = { top: 380, left: 200 };
 let position = { ...posicionInicial }; // Copia de la posición inicial
 let direction = 0; // Dirección inicial (0 = Norte)
 
+const tesoros = [
+    { top: 230, left: 150, id: 'trofeo1', ventana: 'imagenes/ventanaTrofeo1.png', guardar: 'imagenes/trofeo1.png' },
+    { top: 300, left: 200, id: 'trofeo2', ventana: 'imagenes/ventanaTrofeo2.png', guardar: 'imagenes/trofeo2.png' },
+    { top: 100, left: 250, id: 'trofeo3', ventana: 'imagenes/ventanaTrofeo3.png', guardar: 'imagenes/trofeo3.png' },
+    { top: 50, left: 100, id: 'trofeo4', ventana: 'imagenes/ventanaTrofeo4.png', guardar: 'imagenes/trofeo4.png' },
+    { top: 300, left: 350, id: 'trofeo5', ventana: 'imagenes/ventanaTrofeo5.png', guardar: 'imagenes/trofeo5.png' },
+    { top: 200, left: 50, id: 'trofeo6', ventana: 'imagenes/ventanaTrofeo6.png', guardar: 'imagenes/trofeo6.png' },
+    { top: 150, left: 300, id: 'trofeo7', ventana: 'imagenes/ventanaTrofeo7.png', guardar: 'imagenes/trofeo7.png' },
+    { top: 80, left: 200, id: 'trofeo8', ventana: 'imagenes/ventanaTrofeo8.png', guardar: 'imagenes/trofeo8.png' },
+    { top: 320, left: 100, id: 'trofeo9', ventana: 'imagenes/ventanaTrofeo9.png', guardar: 'imagenes/trofeo9.png' },
+    { top: 180, left: 180, id: 'trofeo10', ventana: 'imagenes/ventanaTrofeo10.png', guardar: 'imagenes/trofeo10.png' },
+    { top: 250, left: 250, id: 'trofeo11', ventana: 'imagenes/ventanaTrofeo11.png', guardar: 'imagenes/trofeo11.png' },
+    { top: 350, left: 50, id: 'trofeo12', ventana: 'imagenes/ventanaTrofeo12.png', guardar: 'imagenes/trofeo12.png' }
+];
+
+
 // Función para rotar el jugador
 function rotate(dir) {
     switch (dir) {
@@ -63,45 +79,46 @@ function leaveFootprint(top, left, rotation) {
 }
 
 function excavar() {
-    // Convertir las coordenadas actuales a números enteros
     const currentTop = parseInt(position.top);
     const currentLeft = parseInt(position.left);
 
-    // Verificar si la posición actual coincide con la deseada
-    if (currentTop === 230 && currentLeft === 150) { //  coordenadas de trofeo
-        showPopup();
+    // Buscar el tesoro en la posición actual
+    const tesoroEncontrado = tesoros.find(t => t.top === currentTop && t.left === currentLeft);
+
+    if (tesoroEncontrado) {
+        // Mostrar la imagen de la ventana emergente
+        showPopup(tesoroEncontrado.ventana);
+
+        // Guardar la imagen del trofeo en el localStorage
+        localStorage.setItem(tesoroEncontrado.id, tesoroEncontrado.guardar);
     } else {
         alert('No hay nada aquí para excavar.');
-        alert(`¡Excavando en la posición actual! Posición: top=${currentTop}, left=${currentLeft}`);
     }
 }
-   
+
 
 // Función para mostrar la ventana emergente
-function showPopup() {
+function showPopup(image) {
     const overlay = document.getElementById('overlay');
+    const popup = document.querySelector('.popup');
+
+    // Mostrar la imagen de la ventana emergente
+    popup.innerHTML = `<img src="${image}" alt="Tesoro" style="max-width: 100%; height: auto;">`;
     overlay.style.display = 'flex'; // Mostrar el overlay
 }
 
+
 // Función para cerrar la ventana emergente
 function closePopup() {
-      // Guardar información en el localStorage
-      localStorage.setItem('trofeo1', true);
-
-      // Cerrar la ventana emergente
-      const overlay = document.getElementById('overlay');
-      overlay.style.display = 'none';
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
 }
-
-
 
 // Función para reiniciar al jugador
 function reset() {
-    // Restaurar la posición inicial
     position = { ...posicionInicial };
     direction = 0;
 
-    // Actualizar la posición y dirección del jugador
     player.style.top = position.top + 'px';
     player.style.left = position.left + 'px';
     player.style.transform = `rotate(${direction}deg)`;
@@ -110,34 +127,30 @@ function reset() {
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
 }
 
+// Configurar pestaña activa al cargar la página
+window.onload = () => {
+    const activeTab = localStorage.getItem('activeTab') || 'tab1';
+    switchTab(activeTab);
+    reset(); // Posicionar al jugador en la posición inicial
+};
+
 function switchTab(tabId) {
-    // Guardar la pestaña activa en localStorage
+    // Guardar la pestaña activa en el localStorage
     localStorage.setItem('activeTab', tabId);
 
-    // Ocultar todos los contenidos
+    // Ocultar todas las pestañas de contenido
     const allContents = document.querySelectorAll('.tab-content');
-    allContents.forEach(content => content.style.display = 'none');
+    allContents.forEach(content => content.classList.remove('active'));
 
     // Eliminar la clase "active" de todas las pestañas
     const allTabs = document.querySelectorAll('.tab');
     allTabs.forEach(tab => tab.classList.remove('active'));
 
-    // Mostrar el contenido de la pestaña seleccionada
+    // Mostrar la pestaña de contenido correspondiente
     const activeContent = document.getElementById(`${tabId}-content`);
-    if (activeContent) activeContent.style.display = 'block';
+    if (activeContent) activeContent.classList.add('active');
 
     // Añadir la clase "active" a la pestaña seleccionada
     const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
     if (activeTab) activeTab.classList.add('active');
 }
-
-
-// Configurar pestaña activa al cargar la página
-window.onload = () => {
-    // Leer la pestaña activa desde el localStorage
-    const activeTab = localStorage.getItem('activeTab') || 'tab1'; // Pestaña predeterminada es 'tab1'
-    console.log('Pestaña activa detectada:', activeTab); // Para depuración
-    switchTab(activeTab); // Activar la pestaña correspondiente
-};
-
-

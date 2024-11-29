@@ -187,7 +187,7 @@ h1 {
     border-bottom: 20px solid black; /* Triángulo negro */
     position: absolute; /* Necesario para top y left */
     bottom: -4px; /* Posición inicial */
-    left: 48%; /* Posición inicial */
+    left: 46%; /* Posición inicial */
     transform: translateX(-50%);
     transition: top 0.3s ease, left 0.3s ease, transform 0.3s ease; /* Transición suave */
 }
@@ -244,22 +244,6 @@ h1 {
     align-items: center;
 }
 
-/* Estilo para la tabla de madera */
-.wood-table {
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.wood-table td {
-    width: 80px;
-    height: 80px;
-    background: url('imagenes/marcoTrofeos.png') no-repeat center center;
-    background-size: cover;
-    border: 1px solid #4d2e1e; /* Bordes oscuros */
-}
 
 
 /* Contenedor de la ventana emergente */
