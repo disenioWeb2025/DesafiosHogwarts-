@@ -150,7 +150,7 @@ h1 {
     font-family: 'Georgia', serif;
     padding: 10px 15px;
     cursor: pointer;
-    margin: 2px;
+    margin: 1px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
 }
@@ -207,21 +207,27 @@ h1 {
 
 /* Tabla de Trofeos */
 .wood-table {
-    width: auto;
-    margin: 20px auto;
-    border-collapse: collapse;
+    width: auto; /* Ajuste automático al contenido */
+    margin: 20px auto; /* Centrar la tabla */
+    border-collapse: separate; /* Permitir bordes entre celdas */
+    border-spacing: 10px; /* Espaciado entre las celdas */
+    border: 5px solid #4d2e1e; /* Marco alrededor de la tabla */
+    border-radius: 10px; /* Bordes redondeados de la tabla */
+    background-color: #e8dcc2; /* Fondo de la tabla */
+    padding: 10px; /* Espaciado interno */
 }
-
+/*celdas*/
 .wood-table td {
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0;
-    background-color: #f8f8f8;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 100px; /* Ajustar según sea necesario */
+    height: 100px; /* Ajustar según sea necesario */
+    text-align: center; /* Centrar contenido horizontalmente */
+    vertical-align: middle; /* Centrar contenido verticalmente */
+    padding: 5px; /* Espaciado interno de cada celda */
+    border: 2px solid #4d2e1e; /* Bordes entre celdas */
+    background-color: #f8f8f8; /* Fondo de las celdas */
+    background-size: cover; /* Asegura que el fondo cubra toda la celda */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-position: center; /* Centrar la imagen de fondo */
 }
 
 .wood-table td.default {
@@ -229,10 +235,12 @@ h1 {
 }
 
 .wood-table td img {
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+    max-width: 80%; /* Tamaño máximo de las imágenes */
+    height: auto; /* Mantener la proporción de la imagen */
+    display: block; /* Asegurar que las imágenes sean un bloque centrado */
+    margin: auto; /* Centrar las imágenes en las celdas */
+    border-radius: 8px; /* Bordes redondeados de las imágenes */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra alrededor de las imágenes */
 }
 
 /* Ventana emergente */

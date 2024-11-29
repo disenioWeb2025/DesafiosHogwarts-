@@ -10,14 +10,14 @@ const tesoros = [
     { top: 330, left: 100, id: 'trofeo2', ventana: 'imagenes/ventanaTrofeo2.png', guardar: 'imagenes/trofeo2.png' },
     { top: 280, left: 175, id: 'trofeo3', ventana: 'imagenes/ventanaTrofeo3.png', guardar: 'imagenes/trofeo3.png' },
     { top: 155, left: 275, id: 'trofeo4', ventana: 'imagenes/ventanaTrofeo4.png', guardar: 'imagenes/trofeo4.png' },
-    { top: 300, left: 350, id: 'trofeo5', ventana: 'imagenes/ventanaTrofeo5.png', guardar: 'imagenes/trofeo5.png' },
-    { top: 200, left: 50, id: 'trofeo6', ventana: 'imagenes/ventanaTrofeo6.png', guardar: 'imagenes/trofeo6.png' },
-    { top: 150, left: 300, id: 'trofeo7', ventana: 'imagenes/ventanaTrofeo7.png', guardar: 'imagenes/trofeo7.png' },
-    { top: 80, left: 200, id: 'trofeo8', ventana: 'imagenes/ventanaTrofeo8.png', guardar: 'imagenes/trofeo8.png' },
-    { top: 320, left: 100, id: 'trofeo9', ventana: 'imagenes/ventanaTrofeo9.png', guardar: 'imagenes/trofeo9.png' },
-    { top: 180, left: 180, id: 'trofeo10', ventana: 'imagenes/ventanaTrofeo10.png', guardar: 'imagenes/trofeo10.png' },
-    { top: 250, left: 250, id: 'trofeo11', ventana: 'imagenes/ventanaTrofeo11.png', guardar: 'imagenes/trofeo11.png' },
-    { top: 350, left: 50, id: 'trofeo12', ventana: 'imagenes/ventanaTrofeo12.png', guardar: 'imagenes/trofeo12.png' }
+    { top: 130, left: 150, id: 'trofeo5', ventana: 'imagenes/ventanaTrofeo5.png', guardar: 'imagenes/trofeo5.png' },
+    { top: 305, left: 100, id: 'trofeo6', ventana: 'imagenes/ventanaTrofeo6.png', guardar: 'imagenes/trofeo6.png' },
+    { top: 130, left: 75, id: 'trofeo7', ventana: 'imagenes/ventanaTrofeo7.png', guardar: 'imagenes/trofeo7.png' },
+    { top: 130, left: 325, id: 'trofeo8', ventana: 'imagenes/ventanaTrofeo8.png', guardar: 'imagenes/trofeo8.png' },
+    { top: 255, left: 275, id: 'trofeo9', ventana: 'imagenes/ventanaTrofeo9.png', guardar: 'imagenes/trofeo9.png' },
+    { top: 30, left: 325, id: 'trofeo10', ventana: 'imagenes/ventanaTrofeo10.png', guardar: 'imagenes/trofeo10.png' },
+    { top: 380, left: 200, id: 'trofeo11', ventana: 'imagenes/ventanaTrofeo11.png', guardar: 'imagenes/trofeo11.png' },
+    { top: 155, left: 350, id: 'trofeo12', ventana: 'imagenes/ventanaTrofeo12.png', guardar: 'imagenes/trofeo12.png' }
 ];
 
 // Función para rotar el jugador
@@ -79,7 +79,9 @@ function excavar() {
         showPopup(tesoroEncontrado.ventana);
         sessionStorage.setItem(tesoroEncontrado.id, tesoroEncontrado.guardar);
     } else {
-        alert(`No hay nada aquí para excavar. Coordenadas: Top=${currentTop}, Left=${currentLeft}`);
+         // Mostrar la imagen de "no hay nada aquí" (ventanaTrofeo0.png)
+         console.log(`Current Position: Top=${position.top}, Left=${position.left}`);
+         showPopup('imagenes/ventanaTrofeo0.png');
     }
 }
 
