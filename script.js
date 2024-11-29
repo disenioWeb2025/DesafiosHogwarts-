@@ -131,7 +131,15 @@ function switchTab(tabId) {
 
 // Configurar pestaña activa al cargar la página
 window.onload = () => {
-    const activeTab = localStorage.getItem('activeTab') || 'tab1';
-    switchTab(activeTab);
-    reset();
+     // Leer la pestaña activa desde el localStorage o usar valores predeterminados
+     const activeTab = localStorage.getItem('activeTab') || 'tab1';
+     const activePrimaryTab = 'tabA'; // Mapa siempre será activa al cargar
+ 
+     // Activar la pestaña principal (Mapa)
+     const primaryTab = document.querySelector(`[onclick="switchTab('${activePrimaryTab}')"]`);
+     if (primaryTab) primaryTab.classList.add('active');
+ 
+     // Activar la pestaña numerada (1 por defecto)
+     switchTab(activeTab);
+     reset();
 };
