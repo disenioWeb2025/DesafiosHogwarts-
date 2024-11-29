@@ -7,9 +7,9 @@ let direction = 0; // Dirección inicial (0 = Norte)
 
 const tesoros = [
     { top: 230, left: 150, id: 'trofeo1', ventana: 'imagenes/ventanaTrofeo1.png', guardar: 'imagenes/trofeo1.png' },
-    { top: 300, left: 200, id: 'trofeo2', ventana: 'imagenes/ventanaTrofeo2.png', guardar: 'imagenes/trofeo2.png' },
-    { top: 100, left: 250, id: 'trofeo3', ventana: 'imagenes/ventanaTrofeo3.png', guardar: 'imagenes/trofeo3.png' },
-    { top: 50, left: 100, id: 'trofeo4', ventana: 'imagenes/ventanaTrofeo4.png', guardar: 'imagenes/trofeo4.png' },
+    { top: 330, left: 100, id: 'trofeo2', ventana: 'imagenes/ventanaTrofeo2.png', guardar: 'imagenes/trofeo2.png' },
+    { top: 280, left: 175, id: 'trofeo3', ventana: 'imagenes/ventanaTrofeo3.png', guardar: 'imagenes/trofeo3.png' },
+    { top: 155, left: 275, id: 'trofeo4', ventana: 'imagenes/ventanaTrofeo4.png', guardar: 'imagenes/trofeo4.png' },
     { top: 300, left: 350, id: 'trofeo5', ventana: 'imagenes/ventanaTrofeo5.png', guardar: 'imagenes/trofeo5.png' },
     { top: 200, left: 50, id: 'trofeo6', ventana: 'imagenes/ventanaTrofeo6.png', guardar: 'imagenes/trofeo6.png' },
     { top: 150, left: 300, id: 'trofeo7', ventana: 'imagenes/ventanaTrofeo7.png', guardar: 'imagenes/trofeo7.png' },
@@ -20,137 +20,116 @@ const tesoros = [
     { top: 350, left: 50, id: 'trofeo12', ventana: 'imagenes/ventanaTrofeo12.png', guardar: 'imagenes/trofeo12.png' }
 ];
 
-
 // Función para rotar el jugador
 function rotate(dir) {
-    switch (dir) {
-        case 'Norte': direction = 0; break;
-        case 'Sur': direction = 180; break;
-        case 'Este': direction = 90; break;
-        case 'Oeste': direction = 270; break;
-    }
+    const directions = { Norte: 0, Sur: 180, Este: 90, Oeste: 270 };
+    direction = directions[dir] || 0;
     player.style.transform = `rotate(${direction}deg)`;
 }
 
 // Función para avanzar en la dirección actual
 function advance(steps) {
     const stepSize = 25; // Tamaño de cada paso en píxeles
-
     let i = 0;
 
     function moveStep() {
-        if (i >= steps) return; // Detener el bucle cuando se completen los pasos
+        if (i >= steps) return;
 
-        // Crear la huella en la posición actual ANTES de mover al jugador
-        leaveFootprint(position.top, position.left, direction);
-
-        // Calcular nueva posición basada en la dirección
+        leaveFootprint(position.top, position.left, direction); // Dejar huella antes de mover
         switch (direction) {
             case 0: position.top = Math.max(0, position.top - stepSize); break; // Norte
             case 180: position.top = Math.min(375, position.top + stepSize); break; // Sur
             case 90: position.left = Math.min(375, position.left + stepSize); break; // Este
             case 270: position.left = Math.max(0, position.left - stepSize); break; // Oeste
         }
+        player.style.top = `${position.top}px`;
+        player.style.left = `${position.left}px`;
 
-        // Actualizar visualmente la posición del jugador
-        player.style.top = position.top + 'px';
-        player.style.left = position.left + 'px';
-
-        i++; // Incrementar el contador de pasos
-        setTimeout(moveStep, 200); // Llamar al siguiente paso con un retraso de 200ms
+        i++;
+        setTimeout(moveStep, 200);
     }
 
-    moveStep(); // Iniciar el movimiento
+    moveStep();
 }
 
-// Función para dejar una huella en la posición actual
+// Función para dejar una huella
 function leaveFootprint(top, left, rotation) {
     const footprint = document.createElement('img');
-    footprint.src = 'imagenes/huella.png'; // Ruta a la imagen de la huella
+    footprint.src = 'imagenes/huella.png';
     footprint.alt = 'Huella';
-    footprint.style.position = 'absolute';
-    footprint.style.width = '20px';
-    footprint.style.height = '20px';
-    footprint.style.top = top + 'px';
-    footprint.style.left = left + 'px';
-    footprint.style.transform = `rotate(${rotation}deg)`;
+    Object.assign(footprint.style, {
+        position: 'absolute',
+        width: '20px',
+        height: '20px',
+        top: `${top}px`,
+        left: `${left}px`,
+        transform: `rotate(${rotation}deg)`
+    });
 
     document.querySelector('.map').appendChild(footprint);
 }
 
+// Función para excavar
 function excavar() {
-    const currentTop = parseInt(position.top);
-    const currentLeft = parseInt(position.left);
-
-    // Buscar el tesoro en la posición actual
+    const currentTop = parseInt(position.top, 10);
+    const currentLeft = parseInt(position.left, 10);
     const tesoroEncontrado = tesoros.find(t => t.top === currentTop && t.left === currentLeft);
 
     if (tesoroEncontrado) {
-        // Mostrar la imagen de la ventana emergente
         showPopup(tesoroEncontrado.ventana);
-
-        // Guardar la imagen del trofeo en el localStorage
-        localStorage.setItem(tesoroEncontrado.id, tesoroEncontrado.guardar);
+        sessionStorage.setItem(tesoroEncontrado.id, tesoroEncontrado.guardar);
     } else {
-        alert('No hay nada aquí para excavar.');
+        alert(`No hay nada aquí para excavar. Coordenadas: Top=${currentTop}, Left=${currentLeft}`);
     }
 }
-
 
 // Función para mostrar la ventana emergente
 function showPopup(image) {
     const overlay = document.getElementById('overlay');
     const popup = document.querySelector('.popup');
-
-    // Mostrar la imagen de la ventana emergente
     popup.innerHTML = `<img src="${image}" alt="Tesoro" style="max-width: 100%; height: auto;">`;
-    overlay.style.display = 'flex'; // Mostrar el overlay
+    overlay.style.display = 'flex';
 }
-
 
 // Función para cerrar la ventana emergente
 function closePopup() {
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
 }
 
 // Función para reiniciar al jugador
 function reset() {
     position = { ...posicionInicial };
     direction = 0;
-
-    player.style.top = position.top + 'px';
-    player.style.left = position.left + 'px';
-    player.style.transform = `rotate(${direction}deg)`;
-
-    // Eliminar todas las huellas
+    player.style.top = `${position.top}px`;
+    player.style.left = `${position.left}px`;
+    player.style.transform = 'rotate(0deg)';
     document.querySelectorAll('.map img').forEach(footprint => footprint.remove());
+}
+
+// Función para cambiar de pestaña
+function switchTab(tabId) {
+    localStorage.setItem('activeTab', tabId);
+
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+        content.style.display = 'none';
+    });
+
+    document.querySelectorAll('.tabs .tab').forEach(tab => tab.classList.remove('active'));
+
+    const activeContent = document.getElementById(`${tabId}-content`);
+    if (activeContent) {
+        activeContent.classList.add('active');
+        activeContent.style.display = 'block';
+    }
+
+    const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
+    if (activeTab) activeTab.classList.add('active');
 }
 
 // Configurar pestaña activa al cargar la página
 window.onload = () => {
     const activeTab = localStorage.getItem('activeTab') || 'tab1';
     switchTab(activeTab);
-    reset(); // Posicionar al jugador en la posición inicial
+    reset();
 };
-
-function switchTab(tabId) {
-    // Guardar la pestaña activa en el localStorage
-    localStorage.setItem('activeTab', tabId);
-
-    // Ocultar todas las pestañas de contenido
-    const allContents = document.querySelectorAll('.tab-content');
-    allContents.forEach(content => content.classList.remove('active'));
-
-    // Eliminar la clase "active" de todas las pestañas
-    const allTabs = document.querySelectorAll('.tab');
-    allTabs.forEach(tab => tab.classList.remove('active'));
-
-    // Mostrar la pestaña de contenido correspondiente
-    const activeContent = document.getElementById(`${tabId}-content`);
-    if (activeContent) activeContent.classList.add('active');
-
-    // Añadir la clase "active" a la pestaña seleccionada
-    const activeTab = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
-    if (activeTab) activeTab.classList.add('active');
-}

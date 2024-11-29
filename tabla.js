@@ -1,8 +1,22 @@
+/*Manoje de pestañas*/
+function redirectToIndex(tabId) {
+    try {
+        // Guardar la pestaña activa en localStorage
+        localStorage.setItem('activeTab', tabId);
+
+        // Redirigir a index.html
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Error al redirigir:', error);
+    }
+}
+
+
 window.onload = function () {
-    const activeTab = localStorage.getItem('activeTab') || 'tab1';
-    const tabs = document.querySelectorAll('.tab');
+    // Configuración inicial para mantener activa la pestaña "Baúl Mágico"
+    const tabs = document.querySelectorAll('.tabs .tab');
     tabs.forEach(tab => tab.classList.remove('active'));
-    const activeButton = document.querySelector(`[onclick="redirectToIndex('${activeTab}')"]`);
+    const activeButton = document.querySelector(`[onclick="window.location.href='tabla.html'"]`);
     if (activeButton) activeButton.classList.add('active');
 
     // Mostrar los trofeos encontrados en la tabla
@@ -22,17 +36,12 @@ window.onload = function () {
     ];
 
     trofeos.forEach(trofeo => {
-        const imageSrc = localStorage.getItem(trofeo.id);
-        if (imageSrc) {
-            const celda = document.getElementById(trofeo.celda);
-            if (celda) {
-                celda.innerHTML = `<img src="${imageSrc}" alt="Tesoro" style="max-width: 100%; height: auto;">`;
-            }
+        const imageSrc = sessionStorage.getItem(trofeo.id);
+        const celda = document.getElementById(trofeo.celda);
+        if (celda) {
+            celda.innerHTML = imageSrc
+                ? `<img src="${imageSrc}" alt="Tesoro" style="max-width: 100%; height: auto;">`
+                : '<img src="imagenes/marcoTrofeos.png" alt="Marco vacío" style="max-width: 100%; height: auto;">';
         }
     });
 };
-
-
-
-
-
